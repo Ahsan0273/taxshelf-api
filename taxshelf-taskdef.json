@@ -1,0 +1,18 @@
+{
+    "family": "taxshelf-task",
+    "containerDefinitions": [{
+      "name": "taxshelf-api",
+      "image": "REPLACED_BY_ACTION",
+      "portMappings": [{ "containerPort": 5000 }],
+      "secrets": [
+        { "name": "SPRING_DATASOURCE_PASSWORD", "valueFrom": "arn:aws:secretsmanager:..." },
+        { "name": "JWT_SECRET", "valueFrom": "arn:aws:secretsmanager:..." }
+      ],
+      "environment": [
+        { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" },
+        { "name": "SPRING_DATASOURCE_URL", "value": "jdbc:mysql://${RDS_ENDPOINT}:3306/taxshelf?createDatabaseIfNotExist=true" },
+        { "name": "SPRING_DATASOURCE_USERNAME", "value": "${RDS_USER}" }
+      ]
+    }]
+  }
+  
