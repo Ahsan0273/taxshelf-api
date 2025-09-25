@@ -22,6 +22,8 @@ jobs:
 
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1   # ✅ only v1 exists
+        with:
+         aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Print ECR repository path
         run: echo "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.AWS_ECR_REPO }}"
