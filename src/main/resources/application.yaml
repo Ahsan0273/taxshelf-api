@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: taxshelf-api
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+  profiles:
+    active: dev
+  jwt: 
+    secret: ${JWT_SECRET}
+    accessTokenExpiration: 900
+    refreshTokenExpiation: 608400
