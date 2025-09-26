@@ -1,6 +1,6 @@
 {
     "family": "taxshelf-task",
-    "executionRoleArn": "arn:aws:iam::<your-account-id>:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::267180206723:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
         "name": "taxshelf-api",
