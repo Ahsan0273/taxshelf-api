@@ -1,6 +1,6 @@
 {
     "family": "taxshelf-task",
-    "executionRoleArn": "arn:aws:iam::267180206723:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::<your-account-id>:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
         "name": "taxshelf-api",
@@ -8,6 +8,8 @@
         "portMappings": [
           { "containerPort": 5000 }
         ],
+        "memoryReservation": 512,    
+        "memory": 1024,       
         "environment": [
           { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" }
         ],
