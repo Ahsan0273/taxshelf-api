@@ -1,18 +1,34 @@
 {
     "family": "taxshelf-task",
-    "containerDefinitions": [{
-      "name": "taxshelf-api",
-      "image": "REPLACED_BY_ACTION",
-      "portMappings": [{ "containerPort": 5000 }],
-      "secrets": [
-        { "name": "SPRING_DATASOURCE_PASSWORD", "valueFrom": "arn:aws:secretsmanager:..." },
-        { "name": "JWT_SECRET", "valueFrom": "arn:aws:secretsmanager:..." }
-      ],
-      "environment": [
-        { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" },
-        { "name": "SPRING_DATASOURCE_URL", "value": "jdbc:mysql://${RDS_ENDPOINT}:3306/taxshelf?createDatabaseIfNotExist=true" },
-        { "name": "SPRING_DATASOURCE_USERNAME", "value": "${RDS_USER}" }
-      ]
-    }]
+    "containerDefinitions": [
+      {
+        "name": "taxshelf-api",
+        "image": "REPLACED_BY_ACTION",
+        "portMappings": [
+          { "containerPort": 5000 }
+        ], 
+        "environment": [
+          { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" }
+        ],
+        "secrets": [
+          {
+            "name": "JWT_SECRET",
+            "valueFrom": "/taxshelf/JWT_SECRET"
+          },
+          {
+            "name": "SPRING_DATASOURCE_USERNAME",
+            "valueFrom": "/taxshelf/RDS_USER"
+          },
+          {
+            "name": "SPRING_DATASOURCE_PASSWORD",
+            "valueFrom": "/taxshelf/RDS_PASSWORD"
+          },
+          {
+            "name": "SPRING_DATASOURCE_URL",
+            "valueFrom": "/taxshelf/RDS_ENDPOINT"
+          }
+        ]
+      }
+    ]
   }
   
