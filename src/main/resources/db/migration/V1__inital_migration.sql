@@ -7,6 +7,20 @@ CREATE TABLE `role` (
   UNIQUE KEY `role_unique` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- testdb.`user` definition
+
+CREATE TABLE `user` (
+  `id` varchar(100) NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `role_id` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_unique` (`email`),
+  KEY `user_role_FK` (`role_id`),
+  CONSTRAINT `user_role_FK` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- testdb.profile definition
 
 CREATE TABLE `profile` (
@@ -36,17 +50,3 @@ CREATE TABLE `address` (
   CONSTRAINT `address_user_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- testdb.`user` definition
-
-CREATE TABLE `user` (
-  `id` varchar(100) NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `role_id` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_unique` (`email`),
-  UNIQUE KEY `user_unique_1` (`email`),
-  KEY `user_role_FK` (`role_id`),
-  CONSTRAINT `user_role_FK` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
