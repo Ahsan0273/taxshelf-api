@@ -2,13 +2,13 @@
     "family": "taxshelf-task",
     "requiresCompatibilities": [ "FARGATE" ],
     "networkMode": "awsvpc",
-    "cpu": "512",             
-    "memory": "1024",         
+    "cpu": "512",
+    "memory": "1024",
     "executionRoleArn": "arn:aws:iam::267180206723:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
         "name": "taxshelf-api",
-        "image": "REPLACED_BY_ACTION",
+        "image": "267180206723.dkr.ecr.eu-north-1.amazonaws.com/taxshelf:latest",
         "portMappings": [
           { "containerPort": 5000 }
         ],
@@ -22,7 +22,15 @@
           { "name": "SPRING_DATASOURCE_USERNAME", "valueFrom": "/taxshelf/RDS_USER" },
           { "name": "SPRING_DATASOURCE_PASSWORD", "valueFrom": "/taxshelf/RDS_PASSWORD" },
           { "name": "SPRING_DATASOURCE_URL", "valueFrom": "/taxshelf/RDS_ENDPOINT" }
-        ]
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/taxshelf-api",       
+            "awslogs-region": "eu-north-1",             
+            "awslogs-stream-prefix": "ecs"               
+          }
+        }
       }
     ]
   }
