@@ -1,32 +1,21 @@
 {
     "family": "taxshelf-task",
+    "executionRoleArn": "arn:aws:iam::267180206723:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
         "name": "taxshelf-api",
         "image": "REPLACED_BY_ACTION",
         "portMappings": [
           { "containerPort": 5000 }
-        ], 
+        ],
         "environment": [
           { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" }
         ],
         "secrets": [
-          {
-            "name": "JWT_SECRET",
-            "valueFrom": "/taxshelf/JWT_SECRET"
-          },
-          {
-            "name": "SPRING_DATASOURCE_USERNAME",
-            "valueFrom": "/taxshelf/RDS_USER"
-          },
-          {
-            "name": "SPRING_DATASOURCE_PASSWORD",
-            "valueFrom": "/taxshelf/RDS_PASSWORD"
-          },
-          {
-            "name": "SPRING_DATASOURCE_URL",
-            "valueFrom": "/taxshelf/RDS_ENDPOINT"
-          }
+          { "name": "JWT_SECRET", "valueFrom": "/taxshelf/JWT_SECRET" },
+          { "name": "SPRING_DATASOURCE_USERNAME", "valueFrom": "/taxshelf/RDS_USER" },
+          { "name": "SPRING_DATASOURCE_PASSWORD", "valueFrom": "/taxshelf/RDS_PASSWORD" },
+          { "name": "SPRING_DATASOURCE_URL", "valueFrom": "/taxshelf/RDS_ENDPOINT" }
         ]
       }
     ]
