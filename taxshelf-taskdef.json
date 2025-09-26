@@ -1,5 +1,9 @@
 {
     "family": "taxshelf-task",
+    "requiresCompatibilities": [ "FARGATE" ],
+    "networkMode": "awsvpc",
+    "cpu": "512",             
+    "memory": "1024",         
     "executionRoleArn": "arn:aws:iam::267180206723:role/ecsTaskExecutionRole",
     "containerDefinitions": [
       {
@@ -8,8 +12,8 @@
         "portMappings": [
           { "containerPort": 5000 }
         ],
-        "memoryReservation": 512,    
-        "memory": 1024,       
+        "memoryReservation": 512,
+        "memory": 1024,
         "environment": [
           { "name": "SPRING_PROFILES_ACTIVE", "value": "prod" }
         ],
